@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace StudentsUIMVPWinForms.Views
 {
-	public interface IStudentsForm
+	public interface IMainForm
 	{
+			event EventHandler ShowStudentView;
 	}
 }

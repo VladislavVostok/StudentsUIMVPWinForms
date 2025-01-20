@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace StudentsUIMVPWinForms.Views
 {
-	public partial class MainForm : Form
+	public partial class MainForm : Form, IMainForm
 	{
 		public MainForm()
 		{
 			InitializeComponent();
+			btnMainStudent.Click += delegate
+			{
+				ShowStudentView?.Invoke(this, EventArgs.Empty);
+			};
 		}
+
+		public event EventHandler ShowStudentView;
 	}
 }

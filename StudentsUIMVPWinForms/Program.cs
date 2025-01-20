@@ -1,3 +1,5 @@
+using StudentsUIMVPWinForms.Views;
+
 namespace StudentsUIMVPWinForms
 {
 	internal static class Program
@@ -11,7 +13,7 @@ namespace StudentsUIMVPWinForms
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
-			Application.Run(new Form1());
+			Application.Run(new MainForm());
 		}
 	}
 }
