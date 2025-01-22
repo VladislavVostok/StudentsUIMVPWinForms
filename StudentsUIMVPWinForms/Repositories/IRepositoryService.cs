@@ -7,7 +7,7 @@ using StudentsUIMVPWinForms.Models;
 
 namespace StudentsUIMVPWinForms.Repositories
 {
-    public interface IRepository
+    public interface IRepositoryService
     {
         void Add(StudentModel studentModel);
         void Edit(StudentModel studentModel);

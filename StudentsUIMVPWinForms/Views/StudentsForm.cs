@@ -99,5 +99,26 @@ namespace StudentsUIMVPWinForms.Views
 			dataGridView1.DataSource = studentList;
 		}
 
+		private static StudentsForm instance;
+		public static StudentsForm GetInstance(Form parentContainer)
+		{
+			if (instance == null || instance.IsDisposed)
+			{
+				instance = new StudentsForm();
+				instance.MdiParent = parentContainer;
+				instance.FormBorderStyle = FormBorderStyle.None;
+				instance.Dock = DockStyle.Fill;
+			}
+			else
+			{
+				if (instance.WindowState == FormWindowState.Minimized)
+				{
+					instance.WindowState = FormWindowState.Normal;
+				}
+				instance.BringToFront();
+			}
+			return instance;
+		}
+
 	}
 }

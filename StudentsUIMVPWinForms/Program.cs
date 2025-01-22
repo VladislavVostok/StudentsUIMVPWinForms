@@ -1,19 +1,36 @@
+using Microsoft.Extensions.DependencyInjection;
+using StudentsUIMVPWinForms.Repositories;
 using StudentsUIMVPWinForms.Views;
+using StudentsUIMVPWinForms.Repositories;
+using StudentsUIMVPWinForms.Presenters;
+using System;
 
 namespace StudentsUIMVPWinForms
 {
 	internal static class Program
 	{
-		/// <summary>
-		///  The main entry point for the application.
-		/// </summary>
+
+		// Главный контейнер DI
+		private static ServiceProvider _serviceProvider;
+
 		[STAThread]
 		static void Main()
 		{
-			// To customize application configuration such as set high DPI settings or default font,
-			// see https://aka.ms/applicationconfiguration.
-			ApplicationConfiguration.Initialize();
-			Application.Run(new MainForm());
+
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+
+			IMainForm view = new MainForm();
+
+			AppDbContext context = new AppDbContext();
+			IRepositoryService repositoryService = new StudentRepositoryService(context);			
+
+
+			new MainPresenter(view, repositoryService);
+
+
+			//ApplicationConfiguration.Initialize();
+			Application.Run((Form)view);
 		}
 	}
 }

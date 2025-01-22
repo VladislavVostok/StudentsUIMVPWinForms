@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace StudentsUIMVPWinForms.Repositories
 {
-	public class StudentRepository : BaseRepository, IRepository
+	public class StudentRepositoryService : IRepositoryService
 	{
-		public StudentRepository(AppDbContext dbContext) : base(dbContext)
+		protected readonly AppDbContext _dbContext;
+
+		public StudentRepositoryService(AppDbContext dbContext)
 		{
+			_dbContext = dbContext;
 		}
 
 		public void Add(StudentModel studentModel)
@@ -28,7 +31,6 @@ namespace StudentsUIMVPWinForms.Repositories
 			}
 		
 		}	
-
 
 		public void Edit(StudentModel studentModel)
 		{

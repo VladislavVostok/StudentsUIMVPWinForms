@@ -7,11 +7,11 @@ namespace StudentsUIMVPWinForms.Presenters
 	public class StudentPresenter
 	{
 		private IView view;
-		private IRepository repository;
+		private IRepositoryService repository;
 		private BindingSource studentBindingSource;
 		private IEnumerable<StudentModel> studentList;
 
-		public StudentPresenter(IView view, IRepository repository)
+		public StudentPresenter(IView view, IRepositoryService repository)
 		{
 			this.studentBindingSource = new BindingSource();
 			this.view = view;
@@ -26,6 +26,7 @@ namespace StudentsUIMVPWinForms.Presenters
 			this.view.SaveEvent += SaveStudent;
 			this.view.CancelEvent += CancelAction;
 
+			LoadAllStudentList();
 			//Устанавливаем привязку к ресурсам
 			this.view.SetStudentListBindingSource(studentBindingSource);
 
@@ -39,6 +40,7 @@ namespace StudentsUIMVPWinForms.Presenters
 		{
 			studentList = repository.GetAll();
 			studentBindingSource.DataSource = studentList;
+			
 		}
 
 		private void CancelAction(object sender, EventArgs e)
@@ -50,7 +52,7 @@ namespace StudentsUIMVPWinForms.Presenters
 		private void SaveStudent(object sender, EventArgs e)
 		{
 			var model = new StudentModel();
-			model.Id = Convert.ToInt32(view.StudentId);
+			//model.Id = Convert.ToInt32(view.StudentId);
 			model.Name = view.Name;
 			model.Age = Convert.ToInt32(view.Age);
 			// делаем валидацию в Presenter -> Common

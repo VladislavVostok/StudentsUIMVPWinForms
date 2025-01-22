@@ -15,6 +15,7 @@ namespace StudentsUIMVPWinForms.Views
 		public MainForm()
 		{
 			InitializeComponent();
+
 			btnMainStudent.Click += delegate
 			{
 				ShowStudentView?.Invoke(this, EventArgs.Empty);
